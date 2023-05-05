@@ -12,11 +12,6 @@ class QuestionsScreenState extends StatefulWidget {
 class _QuestionsScreen extends State<QuestionsScreenState> {
   @override
   Widget build(BuildContext context) {
-    return Column(children: const [
-      Text(
-        "Suka",
-        style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-      )
-    ]);
+    return Column(children: const [Text("Hehe")]);
   }
 }
