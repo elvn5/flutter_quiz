@@ -1,6 +1,12 @@
 class QuizQuestion {
   QuizQuestion(this.text, this.answers);
 
-  final text;
+  final String text;
   final List<String> answers;
+
+  List<String> getShuffledList() {
+    final copyOfList = List.of(answers);
+    copyOfList.shuffle();
+    return copyOfList;
+  }
 }
