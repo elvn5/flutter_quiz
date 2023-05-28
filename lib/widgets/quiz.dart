@@ -15,7 +15,7 @@ class Quiz extends StatefulWidget {
 
 class _QuizState extends State<Quiz> {
   String activeScreen = "start_screen";
-  var selectedAnswers = [];
+  List<String> selectedAnswers = [];
 
   void switchScreen() {
     setState(() {
@@ -35,10 +35,16 @@ class _QuizState extends State<Quiz> {
 
     if (isFinished) {
       setState(() {
-        selectedAnswers = [];
         activeScreen = "results_screen";
       });
     }
+  }
+
+  void resetQuiz() {
+    setState(() {
+      selectedAnswers = [];
+      activeScreen = "start_screen";
+    });
   }
 
   @override
@@ -50,25 +56,27 @@ class _QuizState extends State<Quiz> {
     }
 
     if (activeScreen == "results_screen") {
-      return const ResultsScreen();
+      screenWidget = ResultsScreen(
+        chosenAnswers: selectedAnswers,
+        resetQuiz: resetQuiz,
+      );
     }
 
     return MaterialApp(
-      home: Scaffold(
-        body: Container(
-          width: double.infinity,
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-            colors: [
-              Color.fromARGB(255, 78, 13, 151),
-              Color.fromARGB(255, 107, 15, 168)
-            ],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          )),
-          child: screenWidget,
-        ),
+        home: Scaffold(
+      body: Container(
+        width: double.infinity,
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+          colors: [
+            Color.fromARGB(255, 78, 13, 151),
+            Color.fromARGB(255, 107, 15, 168)
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        )),
+        child: screenWidget,
       ),
-    );
+    ));
   }
 }
