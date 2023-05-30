@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:adv_basics/widgets/question_answer.dart';
 
 class QuestionSummary extends StatelessWidget {
-  QuestionSummary({required this.summaryData, super.key});
+  const QuestionSummary({required this.summaryData, super.key});
 
   final List<Map<String, Object>> summaryData;
 
@@ -12,22 +13,11 @@ class QuestionSummary extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: summaryData.map((e) {
-            return Row(
-              children: [
-                Text(((e["question_index"] as int) + 1).toString()),
-                Expanded(
-                    child: Column(
-                  children: [
-                    Text(e["question"] as String),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Text(e["user_answer"] as String),
-                    Text(e["correct_answer"] as String)
-                  ],
-                ))
-              ],
-            );
+            return QuestionAnswer(
+                question: e["question"] as String,
+                correctAnswer: e["correct_answer"] as String,
+                questionCount: ((e["question_index"] as int) + 1),
+                userAnswer: e["user_answer"] as String);
           }).toList(),
         ),
       ),

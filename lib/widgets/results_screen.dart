@@ -39,6 +39,7 @@ class ResultsScreen extends StatelessWidget {
             children: [
               Text(
                 "You answered $numTotalQuestions of $numCorrectQuestions question correctly",
+                style: const TextStyle(fontSize: 17),
               ),
               const SizedBox(
                 height: 30,
@@ -46,6 +47,7 @@ class ResultsScreen extends StatelessWidget {
               QuestionSummary(summaryData: summaryData),
               const Text(
                 "List of answers and questions",
+                style: TextStyle(fontSize: 17),
               ),
               SizedBox(
                 width: double.infinity,
